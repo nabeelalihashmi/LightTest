@@ -2,7 +2,11 @@
 
 # LightTest
 
-An easy to use extensible testing system for PHP .
+An easy to use extensible testing system for PHP.
+
+![LightTest Screenshot](./docs/lt.png)
+
+
 ## About Author
 [Nabeel Ali](https://iconiccodes.com)
 
