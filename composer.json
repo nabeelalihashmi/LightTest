@@ -1,0 +1,19 @@
+{
+    "name": "nabeelalihashmi/lighttest",
+    "description": "Lightweight Testing Framework for PHP",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "IconicCodes\\LightTest\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Nabeel Ali",
+            "email": "mail2nabeelali@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
