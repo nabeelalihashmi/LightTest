@@ -55,7 +55,7 @@ class LightTest {
         }
 
         echo "\n";
-        $padding = str_repeat(' ', $padding_c + 4);
+        $padding = str_repeat(' ', $padding_c + 11);
    
         // Passed in green bg white text
         $pass_color = "\033[42m\033[37m";
@@ -65,10 +65,10 @@ class LightTest {
         $reset_color = "\033[0m";
     
         echo $pass_color . $padding . $reset_color . "\n";
-        echo $pass_color . "  ✓ " . $line1 . $reset_color . "\n";
+        echo $pass_color . "  ✓  " . $line1 . '      '. $reset_color . "\n";
         echo $pass_color . $padding . $reset_color ."\n";
         echo $fail_color . $padding . $reset_color . "\n";
-        echo $fail_color . "  ✘ " . $line2 . $reset_color . "\n";
+        echo $fail_color . "  ✘  " . $line2 . '      '. $reset_color . "\n";
         echo $fail_color . $padding;
         echo $reset_color;   
         echo "\n";

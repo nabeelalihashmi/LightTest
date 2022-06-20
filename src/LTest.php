@@ -25,7 +25,10 @@ abstract class LTest implements ITest {
         $line1 = "Test Id: {$this->uniqid}" ;
 
         echo "$line1  \n";
-        echo $this->message . "\n\n";
+        echo $this->message . "\n";
+
+        $timeBeforeTest = microtime(true);
+
         if ($capture) {
             ob_start();
             ($this->callback)();
@@ -34,6 +37,11 @@ abstract class LTest implements ITest {
             $this->result = ($this->callback)();
         }
 
+        $timeAfterTest = microtime(true);
+
+        $testTime = number_format($timeAfterTest - $timeBeforeTest, 20);
+        echo "Time Taken: $testTime Seconds\n";
+
         $this->runAfter();
 
         echo "Expected Result: \n{$this->expectedOutput}\n";
@@ -41,10 +49,12 @@ abstract class LTest implements ITest {
 
         $similarity = $this->getSimilarity();
         $padding = str_repeat(' ', strlen($similarity) + 15);
+        
+        // echo "\033[45m\033[37m\033[1m $padding \033[0m\n";
+        // echo "\033[45m\033[37m\033[1m  Similarity: $similarity%  \033[0m\n";
+        // echo "\033[45m\033[37m\033[1m $padding \033[0m\n";
 
-        echo "\033[45m\033[37m\033[1m $padding \033[0m\n";
-        echo "\033[45m\033[37m\033[1m  Similarity: $similarity%  \033[0m\n";
-        echo "\033[45m\033[37m\033[1m $padding \033[0m\n";
+        echo "Similarity: $similarity%\n";
     }
 
     protected function runAfter() {
@@ -87,17 +97,17 @@ abstract class LTest implements ITest {
     }
 
     protected function pass($text = 'PASSED') {
-        $padding = str_repeat(' ', strlen($text) + 3);
+        $padding = str_repeat(' ', strlen($text) + 20);
 
         echo "\033[42m\033[37m\033[1m$padding \033[0m\n";
-        echo "\033[42m\033[37m\033[1m ✓ $text \033[0m\n";
+        echo "\033[42m\033[37m\033[1m        ✓  $text          \033[0m\n";
         echo "\033[42m\033[37m\033[1m$padding \033[0m\n\n\n";
         $this->status = true;
     }
     protected function fail($text = 'FAILED') {
-        $padding = str_repeat(' ', strlen($text) + 3);
+        $padding = str_repeat(' ', strlen($text) + 20);
         echo "\033[41m\033[37m\033[1m$padding \033[0m\n";
-        echo "\033[41m\033[37m\033[1m ✘ $text \033[0m\n";
+        echo "\033[41m\033[37m\033[1m         ✘  $text         \033[0m\n";
         echo "\033[41m\033[37m\033[1m$padding \033[0m\n\n\n";
 
         //
