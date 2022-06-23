@@ -4,7 +4,7 @@ namespace IconicCodes\LightTest;
 
 class LightTest {
     private $tests_array = [];
-    private $results = [];
+    public $results = [];
 
     public function __construct()
     {
@@ -31,7 +31,7 @@ class LightTest {
         $total = 0;
         foreach ($this->tests_array as $test) {
             $test->handle();
-            $this->results[] = $test->getId() . ': ' . $test->getStatus() ? 'Passed' : 'Failed';
+            $this->results[] = $test->getId() . ': ' . ($test->getStatus() == true ? 'Passed' : 'Failed');
             if ($test->getStatus()) {
                 $pass++;
             } else {
